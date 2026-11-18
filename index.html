@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OMNIA AI</title>
+
+<style>
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: #070b14;
+  color: #eaf2ff;
+  font-family: Arial, sans-serif;
+  padding: 20px;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.logo {
+  color: #55d9ff;
+  font-size: 27px;
+  font-weight: bold;
+  letter-spacing: 3px;
+}
+
+.status {
+  color: #39e6a0;
+  font-size: 12px;
+}
+
+.hero {
+  background: linear-gradient(135deg,#101f38,#102b42);
+  border: 1px solid #1c5471;
+  border-radius: 18px;
+  padding: 25px;
+  margin-bottom: 20px;
+}
+
+.hero h1 {
+  font-size: 27px;
+  margin-bottom: 10px;
+}
+
+.hero p {
+  color: #9eb5ca;
+  line-height: 1.6;
+}
+
+.section-title {
+  margin: 25px 0 15px;
+  font-size: 18px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  gap: 12px;
+}
+
+.card {
+  background: #111a29;
+  border: 1px solid #23374e;
+  border-radius: 14px;
+  padding: 18px;
+}
+
+.card small {
+  color: #91a8bf;
+}
+
+.card h2 {
+  margin-top: 12px;
+  font-size: 19px;
+}
+
+.blue {color:#55d9ff}
+.green {color:#39e6a0}
+.red {color:#ff647c}
+
+button {
+  border: none;
+  padding: 14px;
+  border-radius: 10px;
+  background: #087fa8;
+  color: white;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.assistant {
+  margin-top: 25px;
+  background: #111a29;
+  padding: 20px;
+  border-radius: 15px;
+  border: 1px solid #23374e;
+}
+
+.assistant p {
+  color: #a9bbcf;
+  line-height: 1.6;
+  margin: 15px 0;
+}
+
+#response {
+  color: #55d9ff;
+  min-height: 45px;
+}
+
+input {
+  width: 100%;
+  padding: 14px;
+  background: #070b14;
+  border: 1px solid #344b64;
+  border-radius: 9px;
+  color: white;
+  margin-bottom: 10px;
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+}
+
+.actions button {
+  flex: 1;
+}
+
+footer {
+  text-align: center;
+  color: #60768c;
+  margin: 30px 0 10px;
+  font-size: 12px;
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">OMNIA AI</div>
+  <div class="status">● SYSTEM ONLINE</div>
+</header>
+
+<section class="hero">
+  <h1>Welcome, Perry.</h1>
+  <p>Your personal artificial intelligence trading assistant.</p>
+  <br>
+  <p>Markets: Forex | Crypto | Stocks</p>
+  <br>
+  <span class="blue">INTELLIGENCE SYSTEM: INITIALIZED</span>
+</section>
+
+<h3 class="section-title">MARKET CONTROL CENTRE</h3>
+
+<div class="grid">
+
+<div class="card">
+<small>BITCOIN</small>
+<h2 class="blue">BTC / USD</h2>
+<p>Awaiting live data</p>
+</div>
+
+<div class="card">
+<small>FOREX</small>
+<h2>EUR / USD</h2>
+<p>Awaiting live data</p>
+</div>
+
+<div class="card">
+<small>STOCKS</small>
+<h2>NASDAQ</h2>
+<p>Awaiting live data</p>
+</div>
+
+<div class="card">
+<small>RISK GUARDIAN</small>
+<h2 class="green">ACTIVE</h2>
+<p>Demo protection</p>
+</div>
+
+</div>
+
+<h3 class="section-title">OMNIA INTELLIGENCE</h3>
+
+<div class="grid">
+
+<div class="card">
+<small>MARKET SCANNER</small>
+<h2>READY</h2>
+</div>
+
+<div class="card">
+<small>LOSS DETECTOR</small>
+<h2 class="green">ARMED</h2>
+</div>
+
+<div class="card">
+<small>AUTOTRADER</small>
+<h2 class="red">DISABLED</h2>
+</div>
+
+<div class="card">
+<small>VOICE SYSTEM</small>
+<h2 class="blue">READY</h2>
+</div>
+
+</div>
+
+<div class="assistant">
+
+<h3>✦ TALK TO OMNIA</h3>
+
+<p id="response">
+Hello Perry. I am OMNIA. Your intelligent assistant. How can I help you?
+</p>
+
+<input id="command" placeholder="Give OMNIA a command...">
+
+<div class="actions">
+<button onclick="askOmnia()">SEND</button>
+<button onclick="speak()">🎙 VOICE</button>
+</div>
+
+</div>
+
+<footer>
+OMNIA AI © 2026 | PERSONAL INTELLIGENCE SYSTEM
+<br><br>
+DEMO ENVIRONMENT — NO LIVE TRADES
+</footer>
+
+<script>
+
+function askOmnia() {
+
+let input = document.getElementById("command");
+let response = document.getElementById("response");
+
+let command = input.value.toLowerCase();
+
+if(!command.trim()) {
+response.innerText = "Perry, please give me a command.";
+return;
+}
+
+if(command.includes("hello") || command.includes("hi")) {
+response.innerText = "Hello Perry. OMNIA is online and ready.";
+}
+
+else if(command.includes("bitcoin") || command.includes("crypto")) {
+response.innerText = "Crypto analysis module is ready. Live market data has not yet been connected.";
+}
+
+else if(command.includes("forex")) {
+response.innerText = "Forex intelligence module is ready. Live market data has not yet been connected.";
+}
+
+else if(command.includes("stock")) {
+response.innerText = "Stock market module is ready. Live market data has not yet been connected.";
+}
+
+else if(command.includes("risk") || command.includes("loss")) {
+response.innerText = "Risk Guardian is active in demo mode. No real trading account is connected.";
+}
+
+else if(command.includes("trade")) {
+response.innerText = "Autonomous trading is currently disabled. We need to complete testing and risk controls first.";
+}
+
+else if(command.includes("who are you")) {
+response.innerText = "I am OMNIA, your personal AI intelligence and trading assistant.";
+}
+
+else {
+response.innerText = "Command received, Perry. My advanced AI intelligence connection is still under development.";
+}
+
+input.value = "";
+
+}
+
+function speak() {
+
+if(!('speechSynthesis' in window)) {
+alert("Voice output is not supported in this browser.");
+return;
+}
+
+let message = document.getElementById("response").innerText;
+
+let speech = new SpeechSynthesisUtterance(message);
+
+speech.lang = "en-US";
+
+speech.rate = 0.95;
+
+speechSynthesis.speak(speech);
+
+}
+
+</script>
+
+</body>
+</html>
