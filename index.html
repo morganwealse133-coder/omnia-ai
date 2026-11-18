@@ -292,6 +292,34 @@ input.value = "";
 }
 
 function speak() {
+    if (!("speechSynthesis" in window)) {
+        alert("Voice is not supported.");
+        return;
+    }
+
+    const message = document.getElementById("response").innerText;
+    const voices = speechSynthesis.getVoices();
+
+    speechSynthesis.cancel();
+
+    const speech = new SpeechSynthesisUtterance(message);
+
+    const preferredVoice =
+        voices.find(v => v.name.includes("Samantha")) ||
+        voices.find(v => v.name.includes("Ava")) ||
+        voices.find(v => v.lang === "en-US");
+
+    if (preferredVoice) {
+        speech.voice = preferredVoice;
+    }
+
+    speech.lang = "en-US";
+    speech.rate = 0.90;
+    speech.pitch = 0.95;
+    speech.volume = 1;
+
+    speechSynthesis.speak(speech);
+}
 
 if(!('speechSynthesis' in window)) {
 alert("Voice output is not supported in this browser.");
