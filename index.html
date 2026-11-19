@@ -291,11 +291,37 @@ input.value = "";
 
 }
 
-function speak() {
-    if (!("speechSynthesis" in window)) {
-        alert("Voice is not supported.");
-        return;
+  async function speak() {
+  const message = document.getElementById("response").innerText;
+
+  try {
+    const result = await fetch(
+      "https://omnia-voice.morganwealse133.workers.dev/speak",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ text: message })
+      }
+    );
+
+    if (!result.ok) {
+      throw new Error("Voice connection failed");
     }
+
+    const audioBlob = await result.blob();
+    const audioUrl = URL.createObjectURL(audioBlob);
+    const audio = new Audio(audioUrl);
+
+    audio.onended = () => URL.revokeObjectURL(audioUrl);
+
+    await audio.play();
+
+  } catch (error) {
+    alert("OMNIA voice connection failed. Please try again.");
+  }
+}
 
     const message = document.getElementById("response").innerText;
     const voices = speechSynthesis.getVoices();
