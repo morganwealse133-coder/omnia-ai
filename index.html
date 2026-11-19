@@ -307,8 +307,9 @@ input.value = "";
     );
 
     if (!result.ok) {
-      throw new Error("Voice connection failed");
-    }
+  const errorDetails = await result.text();
+  throw new Error(`Voice server returned HTTP ${result.status}: ${errorDetails}`);
+}
 
     const audioBlob = await result.blob();
     const audioUrl = URL.createObjectURL(audioBlob);
@@ -319,8 +320,8 @@ input.value = "";
     await audio.play();
 
   } catch (error) {
-    alert("OMNIA voice connection failed. Please try again.");
-  }
+  alert(error.message);
+}
 }
 
 
